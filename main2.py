@@ -12,6 +12,16 @@ import speech_recognition as sr
 import pyttsx3
 import pyperclip
 
+import platform
+OS = platform.platform()
+OS = OS.lower()
+options = ["windows", "mac"]
+if options[0] in OS:
+    currentOS = options[0]
+elif options[1] in OS:
+    currentOS = options[1]
+print(currentOS)
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
@@ -94,13 +104,19 @@ def get_audio():
                     spoken_text.append(new_text)
                     pyperclip.copy(new_text)
                     time.sleep(3)
-                    pag.hotkey('command', 'v')
+                    if currentOS == options[1]:
+                        pag.hotkey('command', 'v')
+                    elif currentOS == options[0]:
+                        pag.hotkey('ctrl', 'v')
                     break
                 print("parrot says : ", MyText)
                 spoken_text.append(MyText)
                 pyperclip.copy(MyText)
                 time.sleep(3)
-                pag.hotkey('command', 'v')
+                if currentOS == options[1]:
+                    pag.hotkey('command', 'v')
+                elif currentOS == options[0]:
+                    pag.hotkey('ctrl', 'v')
 
             except sr.UnknownValueError:
                 print("Could not understand audio, please try again.")
@@ -232,14 +248,20 @@ with mp_face_mesh.FaceMesh(
               elif (mouth_log[i][1] - open_start_time).total_seconds() >= MIN_OPEN_DURATION:
                   print(f"Mouth has been continuously open for at least {MIN_OPEN_DURATION} seconds")
                   get_audio()
-                  time.sleep(1)
-                  pag.keyDown('command')
-                  pag.keyDown('option')
-                  pag.keyDown('9')
-                  pag.keyUp('9')
-                  pag.keyUp('option')
-                  pag.keyUp('command')
-                  time.sleep(1)
+                  
+                  if currentOS == options[1]:
+                    time.sleep(1)
+                    pag.keyDown('command')
+                    pag.keyDown('option')
+                    pag.keyDown('9')
+                    pag.keyUp('9')
+                    pag.keyUp('option')
+                    pag.keyUp('command')
+                    time.sleep(1)
+                  elif currentOS == options[0]:
+                    time.sleep(1)
+                    pag.hotkey('win','ctrl','o')
+                    time.sleep(1)
                   mouth_log = []
 
       draw_frame(image, face_landmarks)
