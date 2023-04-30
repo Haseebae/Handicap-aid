@@ -8,7 +8,7 @@
 ### If the webcam feed is not working, change the inputs on const "CAMERA" from 0 to 1 or vice versa.
 
 #### The proposed project aims to develop a computer vision-based virtual mouse that allows for hands-free computer interaction
-#### In this software you will see that we can interact with the computer using head movements and various gestures.  In the following program you will see.
+#### In this software you will see that we can interact with the computer using head movements and various gestures. 
 ### Functionalities:
 
 - Left_Blink : Allows you to left click on an item
