@@ -4,7 +4,7 @@
 - pip install -r requirements.txt
 
 ### the script runs for both windows and mac
-### The virtual keyboard shourtcut for mac has been setup manually as mac likes to complicate integration with any software. This will have to be manually changed. On windwos it works fine.
+#### The virtual keyboard shourtcut for mac has been setup manually as mac likes to complicate integration with any software. This will have to be manually changed. On windows it works fine.
 
 ### If the webcam feed is not working, change the inputs on const "CAMERA" from 0 to 1 or vice versa.
 
